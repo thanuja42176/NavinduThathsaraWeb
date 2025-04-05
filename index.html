@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ananda Legacy | Personal Brand</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <!-- Include Tailwind CSS directly -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap');
+        
+        :root {
+            --primary: #0a2463;
+            --secondary: #3e92cc;
+            --accent: #d8315b;
+            --light: #fffaff;
+            --dark: #1e1b18;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .text-gradient {
+            background: linear-gradient(90deg, #0a2463, #3e92cc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .bg-gradient {
+            background: linear-gradient(135deg, #0a2463, #3e92cc);
+        }
+        
+        .bg-primary {
+            background-color: #0a2463;
+        }
+        
+        .text-primary {
+            color: #0a2463;
+        }
+        
+        .text-accent {
+            color: #d8315b;
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #d8315b;
+            transition: width 0.3s;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .hero-section {
+            background-image: url('/api/placeholder/1920/1080');
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: overlay;
+            background-color: #0a2463;
+        }
+        
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .timeline-item {
+            position: relative;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            width: 2px;
+            background-color: #0a2463;
+            top: 0;
+            bottom: 0;
+            left: 7px;
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: #d8315b;
+            left: 0;
+            top: 12px;
+        }
+        
+        .card {
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+        
+        .z-2 {
+            z-index: 2;
+        }
+        
+        .testimonial-carousel {
+            overflow: hidden;
+            width: 100%;
+        }
+        
+        .testimonial-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        
+        .testimonial-slide {
+            min-width: 100%;
+            box-sizing: border-box;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #3e92cc;
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0a2463;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md fixed w-full z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <div class="w-10 h-10 bg-gradient rounded-full flex items-center justify-center">
+                    <span class="text-white font-bold">AC</span>
+                </div>
+                <span class="font-serif font-bold text-xl">Ananda Legacy</span>
+            </div>
+            
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#home" class="nav-link font-medium">Home</a>
+                <a href="#about" class="nav-link font-medium">About</a>
+                <a href="#journey" class="nav-link font-medium">Journey</a>
+                <a href="#philosophy" class="nav-link font-medium">Philosophy</a>
+                <a href="#projects" class="nav-link font-medium">Projects</a>
+                <a href="#contact" class="nav-link font-medium">Contact</a>
+            </div>
+            
+            <div class="md:hidden">
+                <button id="menu-toggle" class="focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white shadow-md">
+            <div class="container mx-auto px-4 py-3 flex flex-col space-y-3">
+                <a href="#home" class="font-medium py-2">Home</a>
+                <a href="#about" class="font-medium py-2">About</a>
+                <a href="#journey" class="font-medium py-2">Journey</a>
+                <a href="#philosophy" class="font-medium py-2">Philosophy</a>
+                <a href="#projects" class="font-medium py-2">Projects</a>
+                <a href="#contact" class="font-medium py-2">Contact</a>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section id="home" class="hero-section relative min-h-screen flex items-center pt-16">
+        <div id="particles-js"></div>
+        <div class="container mx-auto px-4 py-16 z-2">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2">
+                    <h1 class="font-serif font-bold text-4xl md:text-6xl text-white mb-6 animate__animated animate__fadeInUp">Carrying the <span class="text-yellow-300">Ananda</span> Legacy Forward</h1>
+                    <p class="text-gray-200 text-lg md:text-xl mb-8 animate__animated animate__fadeInUp animate__delay-1s">
+                        Embracing wisdom, virtue, and excellence in the spirit of one of Sri Lanka's most prestigious institutions.
+                    </p>
+                    <div class="flex flex-wrap gap-4 animate__animated animate__fadeInUp animate__delay-2s">
+                        <a href="#about" class="bg-white text-primary font-medium px-6 py-3 rounded-full hover:bg-gray-100 transition duration-300">
+                            Discover My Story
+                        </a>
+                        <a href="#contact" class="bg-transparent border-2 border-white text-white font-medium px-6 py-3 rounded-full hover:bg-white hover:text-primary transition duration-300">
+                            Get In Touch
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 mt-12 md:mt-0 animate__animated animate__fadeInRight">
+                    <div class="relative">
+                        <div class="w-64 h-64 md:w-80 md:h-80 mx-auto rounded-full overflow-hidden border-4 border-white shadow-lg animate-float">
+                            <img src="/api/placeholder/320/320" alt="Profile" class="w-full h-full object-cover" />
+                        </div>
+                        <div class="absolute -bottom-4 -right-4 bg-white rounded-full p-4 shadow-lg">
+                            <span class="text-primary font-bold">Class of '10</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+                <a href="#about" class="text-white">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="font-serif font-bold text-4xl mb-4">About <span class="text-gradient">Me</span></h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Proudly shaped by the traditions and values of Ananda College, I carry forward a legacy of excellence, integrity, and service.</p>
+            </div>
+            
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <img src="/api/placeholder/600/400" alt="About Image" class="rounded-lg shadow-lg" />
+                </div>
+                <div class="md:w-1/2 md:pl-12">
+                    <h3 class="font-serif font-bold text-2xl mb-4">My Ananda Journey</h3>
+                    <p class="text-gray-700 mb-6">
+                        My journey at Ananda College began in 2000, where I was immersed in an environment that valued not just academic excellence, but holistic development and character building. Founded in 1886, Ananda College's rich historical legacy and commitment to producing well-rounded individuals has profoundly shaped my worldview and approach to life.
+                    </p>
+                    <p class="text-gray-700 mb-6">
+                        The school's philosophy of "Wisdom and Virtue" became my personal mantra, guiding me through challenges and opportunities alike. The blend of traditional values with modern education at Ananda gave me a unique perspective that I carry into everything I do.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-4 mb-8">
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <h4 class="font-bold text-xl text-primary mb-2">Education</h4>
+                            <p class="text-gray-600">Balanced academic and extracurricular excellence</p>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <h4 class="font-bold text-xl text-primary mb-2">Values</h4>
+                            <p class="text-gray-600">Discipline, integrity, and social responsibility</p>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <h4 class="font-bold text-xl text-primary mb-2">Community</h4>
+                            <p class="text-gray-600">Lifelong connections and networking</p>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <h4 class="font-bold text-xl text-primary mb-2">Legacy</h4>
+                            <p class="text-gray-600">Part of a prestigious lineage of leaders</p>
+                        </div>
+                    </div>
+                    
+                    <a href="#journey" class="inline-flex items-center font-medium text-accent">
+                        Learn more about my journey
+                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Journey Timeline Section -->
+    <section id="journey" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="font-serif font-bold text-4xl mb-4">My <span class="text-gradient">Journey</span></h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">From Ananda College to my current endeavors, here's the path that shaped my career and perspective.</p>
+            </div>
+            
+            <div class="max-w-3xl mx-auto">
+                <div class="timeline-item pl-10 pb-12">
+                    <div class="timeline-dot"></div>
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="font-serif font-bold text-xl text-primary mb-2">2000-2012</h3>
+                        <h4 class="font-bold text-lg mb-3">Ananda College Education</h4>
+                        <p class="text-gray-700">
+                            My formative years at Ananda College laid the foundation for my future. I immersed myself in both academics and extracurriculars, participating in debates, sports, and cultural activities. The school's emphasis on discipline and character development shaped my approach to challenges.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item pl-10 pb-12">
+                    <div class="timeline-dot"></div>
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="font-serif font-bold text-xl text-primary mb-2">2012-2016</h3>
+                        <h4 class="font-bold text-lg mb-3">University Education</h4>
+                        <p class="text-gray-700">
+                            Building on the strong foundation from Ananda College, I pursued higher education with the same values of excellence and perseverance. My university years were marked by academic achievements and leadership roles that expanded my horizons.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item pl-10 pb-12">
+                    <div class="timeline-dot"></div>
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="font-serif font-bold text-xl text-primary mb-2">2016-2020</h3>
+                        <h4 class="font-bold text-lg mb-3">Early Career & Professional Growth</h4>
+                        <p class="text-gray-700">
+                            Entering the professional world, I carried forward the Ananda legacy of excellence and integrity. These years were crucial in establishing my professional identity while maintaining the core values instilled during my school days.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item pl-10">
+                    <div class="timeline-dot"></div>
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="font-serif font-bold text-xl text-primary mb-2">2020-Present</h3>
+                        <h4 class="font-bold text-lg mb-3">Leadership & Innovation</h4>
+                        <p class="text-gray-700">
+                            Currently focused on innovation and leadership in my field, I continue to draw inspiration from Ananda's philosophy of "Wisdom and Virtue." I actively participate in alumni activities and mentorship programs to give back to the institution that shaped me.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Philosophy Section -->
+    <section id="philosophy" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="font-serif font-bold text-4xl mb-4">My <span class="text-gradient">Philosophy</span></h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Inspired by Ananda College's educational ethos, these are the principles that guide my personal and professional life.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="card bg-gray-50 p-8 rounded-lg">
+                    <div class="text-accent text-3xl mb-4">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 class="font-serif font-bold text-xl mb-3">Academic Excellence</h3>
+                    <p class="text-gray-700">
+                        The pursuit of knowledge is lifelong. I believe in continuous learning and intellectual growth, applying critical thinking to solve complex problems and innovate in my field.
+                    </p>
+                </div>
+                
+                <div class="card bg-gray-50 p-8 rounded-lg">
+                    <div class="text-accent text-3xl mb-4">
+                        <i class="fas fa-balance-scale"></i>
+                    </div>
+                    <h3 class="font-serif font-bold text-xl mb-3">Ethical Leadership</h3>
+                    <p class="text-gray-700">
+                        Leadership isn't just about achievement but moral responsibility. I strive to lead with integrity, fairness, and respect for all, influenced by Buddhist principles from Ananda College.
+                    </p>
+                </div>
+                
+                <div class="card bg-gray-50 p-8 rounded-lg">
+                    <div class="text-accent text-3xl mb-4">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <h3 class="font-serif font-bold text-xl mb-3">Social Responsibility</h3>
+                    <p class="text-gray-700">
+                        True success includes giving back to society. I'm committed to community service and sustainable development, creating positive impact beyond personal achievement.
+                    </p>
+                </div>
+                
+                <div class="card bg-gray-50 p-8 rounded-lg">
+                    <div class="text-accent text-3xl mb-4">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="font-serif font-bold text-xl mb-3">Collaborative Spirit</h3>
+                    <p class="text-gray-700">
+                        The strongest achievements come through teamwork. I value diverse perspectives and collective wisdom, building bridges between different viewpoints.
+                    </p>
+                </div>
+                
+                <div class="card bg-gray-50 p-8 rounded-lg">
+                    <div class="text-accent text-3xl mb-4">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <h3 class="font-serif font-bold text-xl mb-3">Discipline & Perseverance</h3>
+                    <p class="text-gray-700">
+                        Success requires dedication and resilience. The discipline instilled at Ananda College helps me persist through challenges and maintain high standards.
+                    </p>
+                </div>
+                
+                <div class="card bg-gray-50 p-8 rounded-lg">
+                    <div class="text-accent text-3xl mb-4">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3 class="font-serif font-bold text-xl mb-3">Innovation & Adaptability</h3>
+                    <p class="text-gray-700">
+                        Embracing change while honoring tradition is essential. I cultivate creative thinking and adaptability to thrive in evolving landscapes while respecting core values.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Projects/Achievements Section -->
+    <section id="projects" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="font-serif font-bold text-4xl mb-4">Projects & <span class="text-gradient">Achievements</span></h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Highlighting some of my key works and accomplishments that reflect the values instilled at Ananda College.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="card bg-white rounded-lg overflow-hidden shadow-md">
+                    <img src="/api/placeholder/400/250" alt="Project 1" class="w-full h-48 object-cover" />
+                    <div class="p-6">
+                        <h3 class="font-serif font-bold text-xl mb-2">Leadership Initiative</h3>
+                        <p class="text-gray-700 mb-4">
+                            A mentorship program inspired by Ananda College's leadership development approach, connecting experienced professionals with emerging talents.
+                        </p>
+                        <a href="#" class="inline-flex items-center font-medium text-accent">
+                            Learn more
+                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="card bg-white rounded-lg overflow-hidden shadow-md">
+                    <img src="/api/placeholder/400/250" alt="Project 2" class="w-full h-48 object-cover" />
+                    <div class="p-6">
+                        <h3 class="font-serif font-bold text-xl mb-2">Community Development</h3>
+                        <p class="text-gray-700 mb-4">
+                            A sustainable development project focusing on education and infrastructure in underserved communities, embodying Ananda's social responsibility values.
+                        </p>
+                        <a href="#" class="inline-flex items-center font-medium text-accent">
+                            Learn more
+                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="card bg-white rounded-lg overflow-hidden shadow-md">
+                    <img src="/api/placeholder/400/250" alt="Project 3" class="w-full h-48 object-cover" />
+                    <div class="p-6">
+                        <h3 class="font-serif font-bold text-xl mb-2">Innovation Hub</h3>
+                        <p class="text-gray-700 mb-4">
+                            A collaborative space for creative thinking and problem-solving, bringing together diverse talents to address contemporary challenges.
+                        </p>
+                        <a href="#" class="inline-flex items-center font-medium text-accent">
+                            Learn more
+                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Testimonials Section -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="font-serif font-bold text-4xl mb-4">What People <span class="text-gradient">Say</span></h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Reflections from colleagues, mentors, and friends on our collaborative journey.</p>
+            </div>
+            
+            <div class="testimonial-carousel">
+                <div class="testimonial-track">
+                    <div class="testimonial-slide p-4">
+                        <div class="bg-gray-50 p-8 rounded-lg">
+                            <div class="text-yellow-500 mb-4">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p class="text-gray-700 italic mb-6">
+                                "Working together has been incredibly rewarding. The values of discipline and excellence that Ananda College instilled are evident in every project we collaborate on. A true embodiment of the school's philosophy."
+                            </p>
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+                                    <img src="/api/placeholder/48/48" alt="Testimonial 1" class="w-full h-full object-cover" />
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">Rajiv Perera</h4>
+                                    <p class="text-gray-600 text-sm">Project Partner</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-slide p-4">
+                        <div class="bg-gray-50 p-8 rounded-lg">
+                            <div class="text-yellow-500 mb-4">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p class="text-gray-700 italic mb-6">
+                                "As a fellow Anandian, I've witnessed firsthand how the school's legacy continues to influence professional excellence. Our shared background has created a unique synergy in our collaborative efforts."
+                            </p>
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+                                    <img src="/api/placeholder/48/48" alt="Testimonial 2" class="w-full h-full object-cover" />
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">Malith Fernando</h4>
+                                    <p class="text-gray-600 text-sm">Alumni Colleague</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-slide p-4">
+                        <div class="bg-gray-50 p-8 rounded-lg">
+                            <div class="text-yellow-500 mb-4">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p class="text-gray-700 italic mb-6">
+                                "The commitment to innovation while maintaining ethical standards is impressive. It's clear that the balanced education from Ananda College has created not just a professional, but a well-rounded individual focused on meaningful impact."
+                            </p>
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+                                    <img src="/api/placeholder/48/48" alt="Testimonial 3" class="w-full h-full object-cover" />
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">Priya Jayawardena</h
